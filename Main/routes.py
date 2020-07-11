@@ -2,6 +2,33 @@ from flask import render_template, request, url_for, redirect
 from Main import app
 from playsound import playsound
 import random
+import heapq
+topPerformers=[]
+heapq.heapify(topPerformers)
+class PQNode:
+    def __init__(self,playerName,score):
+        self.playerName=playerName
+        self.score=score
+    
+    def __lt__(self,other):
+        return self.score < other.score
+    
+    def __str__(self):
+        return str("{} : {}".format(self.playerName,self.score))
+def scorebard_calculation(playerName,score):
+    item=PQNode(playerName,score)
+    if(len(topPerformers)<10):
+        heapq.heappush(topPerformers,item)
+    else:
+        temp=topPerformers[0]
+        if(temp.score<item.score):
+            heapq.heappop(topPerformers)
+            heapq.heappush(topPerformers,item)
+        
+    
+
+
+
 
 @app.route("/")
 def index():
@@ -62,7 +89,15 @@ def checking():
         score=int(score)+1
         return render_template('correct.html',name=playerName,score=score)
     else:
+        scorebard_calculation(playerName,score)
+        #print(topPerformers)
         return render_template('incorrect.html',name=playerName,score=0)
+
+
+@app.route("/leaderboard")
+def leaderboardDisplay():
+    return render_template('leaderboard-view.html',topPerformers=sorted(topPerformers,reverse=True))
+
      
     
 
