@@ -39,10 +39,10 @@ def name():
     return render_template('name-collection.html')
 
 audios={
-    'example.mp3':'example',
-    'hello.mp3':'hello',
-    'science.mp3':'science',
-    'world.mp3':'world'
+    'example.mp3':"a thing characteristic of its kind or illustrating a general rule.",
+    'hello.mp3':"used as a greeting or to begin a telephone conversation.",
+    'science.mp3':"a systematically organized body of knowledge on a particular subject.",
+    'world.mp3':"the earth, together with all of its countries and peoples.",
 }
 score=0
 key=""
@@ -56,6 +56,8 @@ def play():
     playerName=request.form.get("player-name")
     score=request.form.get("score")
     key,val=randomAudioGenerator()
+    print(key,val)
+   
     return render_template('game-started.html',name=playerName,score=score,key=key,val=val)
     
 def randomAudioGenerator():
@@ -83,7 +85,7 @@ def checking():
     playerName=request.form.get("player-name")
     score=request.form.get("score")
     print(key,val,userval,int(score)+1)
-    if(val.lower()==userval.lower()):
+    if(key[:-4].lower()==userval.lower()):
         #render_template('game-started.html',name=playerName,score=score+1,)
         print("ok")
         score=int(score)+1

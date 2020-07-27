@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>zrotR</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
@@ -42,7 +42,7 @@
         <form action="/game-start" method="post">
             <h1>Your Name</h1>
             <div class="input-group input-group-lg">
-                <input name="player-name" id="player-name-input" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                <input name="player-name" id="player-name-input" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required>
                 <input type="text" name="score" value="0" hidden></input>
             </div>
             <br/>

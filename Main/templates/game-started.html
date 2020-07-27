@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Spell-it</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .greeting{
             position: relative;
@@ -45,6 +46,7 @@
         margin-top: 10%;
     }
     </style>
+
 </head>
 <body>
     <!-- greetings area-->
@@ -56,17 +58,35 @@
         <h5>Your Score: <Span>{{score}}</Span></h5>
     </div>
 
+
+    <div id="meaningModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" role="content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Meaning</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>{{val}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- buttons area-->
     <div class="btn-group-vertical" id="button-group">
         <form action="/play-word" method="POST">
-            <input type="text" name="key" value={{key}} hidden></input>
-            <input type="text" name="val" value={{val}} hidden></input>
-            <input type="text" name="player-name" value={{name}} hidden></input>
-            <input type="text" name="score" value={{score}} hidden></input> 
-
-            <button type="submit" class="btn btn-secondary"><img class="icons" src="static/img/play-button-icon.jpg" alt="play-it"></button>
-         
-          </button>
+            <input type="textarea" name="key" value="{{key}}" hidden></input>
+            <input type="textarea" name="val" value="{{val}}" hidden></input>
+            <input type="textarea" name="player-name" value="{{name}}" hidden></input>
+            <input type="textarea" name="score" value="{{score}}" hidden></input>
+            <div class="col-12">
+            <button type="submit" class="btn btn-secondary"><i class="fa fa-microphone"></i></button><br>
+            </div>
+            <div class="col-12">
+                <br>
+            <a role="button" class="btn btn-secondary" data-toggle="modal" data-target="#meaningModal"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+            </div>
         </form>
         <br/>
 
@@ -78,10 +98,10 @@
     <div class="guess-word">
         <h1>Type it out!!</h1>
         <form action="/checkit" method="POST">
-            <input type="text" name="key" value={{key}} hidden></input>
-            <input type="text" name="val" value={{val}} hidden></input>
-            <input type="text" name="player-name" value={{name}} hidden></input>
-            <input type="text" name="score" value={{score}} hidden></input>  
+            <input type="text" name="key" value="{{key}}" hidden></input>
+            <input type="text" name="val" value="{{val}}" hidden></input>
+            <input type="text" name="player-name" value="{{name}}" hidden></input>
+            <input type="text" name="score" value="{{score}}" hidden></input>  
         <div class="input-group input-group-lg">
         <input name="guess-word" id="word-name-input" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
         </div>
